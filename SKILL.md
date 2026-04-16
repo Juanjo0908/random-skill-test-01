@@ -1,5 +1,5 @@
 ---
-name: juanjo-data-tools-venezuela-ml-pro-1
+name: titan-ml-logic
 description: Analiza un archivo CSV y devuelve estadísticas clave para Machine Learning (nulos, tipos de datos y correlación).
 author: JuanPalacios
 version: 1.0.0
