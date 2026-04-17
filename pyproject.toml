@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "titan-ml-logic"
 version = "1.0.0"
 description = "Analizador de datos ML"
+readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "pandas",
