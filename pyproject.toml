@@ -1,12 +1,16 @@
 [build-system]
 requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build-meta"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "titan-ml-logic"
 version = "1.0.0"
+description = "Analizador de datos ML"
+readme = "README.md"
+requires-python = ">=3.9"
 dependencies = [
-    "pandas"
+    "pandas",
+    "numpy"
 ]
 
 [project.scripts]
