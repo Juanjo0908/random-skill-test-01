@@ -1,36 +1,33 @@
+from flask import Flask, jsonify, request
 import pandas as pd
-import argparse
-import json
-import sys
+import io
 
-def analyze_data(file_path):
-    try:
-        df = pd.read_csv(file_path)
-        
-        # Generamos un resumen técnico para la IA
-        report = {
-            "num_rows": int(df.shape[0]),
-            "num_cols": int(df.shape[1]),
-            "columns": list(df.columns),
-            "missing_values": df.isnull().sum().to_dict(),
-            "data_types": {col: str(dtype) for col, dtype in df.dtypes.items()},
-            "summary": "Análisis completado con éxito."
-        }
-        
-        return json.dumps(report, indent=4)
-    except Exception as e:
-        return json.dumps({"error": str(e)})
+app = Flask(__name__) # Este es el 'app' que el servidor busca
 
-def main():
-    import argparse
-    parser = argparse.ArgumentParser(description="Analizador de CSV para ML")
-    parser.add_argument("--file", required=True, help="Ruta al archivo CSV")
-    args = parser.parse_args()
+@app.route('/')
+def home():
+    return jsonify({
+        "status": "online",
+        "message": "ML Skill lista. Envía un CSV para analizar."
+    })
+
+@app.route('/analyze', methods=['POST'])
+def analyze():
+    # Esta función recibirá el archivo desde la IA o el usuario
+    if 'file' not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
     
-    result = analyze_data(args.file)
-    print(result)
+    file = request.files['file']
+    df = pd.read_csv(io.StringIO(file.stream.read().decode("UTF8")))
+    
+    # Tu lógica de ML aquí
+    report = {
+        "rows": int(df.shape[0]),
+        "cols": int(df.shape[1]),
+        "columns": list(df.columns)
+    }
+    return jsonify(report)
 
-if __name__ == "__main__":
-    main()
-
+# Importante: para que funcione el entrypoint app:app
+main = app
 
