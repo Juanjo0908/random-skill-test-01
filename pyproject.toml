@@ -1,0 +1,13 @@
+[project]
+name = "titan-ml-logic"
+version = "1.0.0"
+description = "Analizador de datos ML"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas",
+    "flask"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
