@@ -1,10 +1,16 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
-# ... (lo demás igual)
+name = "titan-ml-logic"
+version = "1.0.0"
+description = "Analizador de datos ML"
+requires-python = ">=3.12"
 dependencies = [
     "pandas",
     "flask"
 ]
 
 [project.scripts]
-# Cambiamos esto para que apunte al objeto 'app' de Flask
 app = "app:app"
